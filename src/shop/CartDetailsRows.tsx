@@ -1,16 +1,14 @@
-import React, {useContext} from 'react';
-import CartContext from "./CartContext";
+import React, {ChangeEvent, useContext} from 'react';
+import {CartContext} from "../context/CartContext";
+import {CartContextType, IProduct} from "../@types/sportstore";
+
 
 function CartDetailsRows() {
 
-    const {cartItems, setCartItems} = useContext(CartContext)
+    const {cartItems, setCartItems, removeFromCart} = useContext(CartContext) as CartContextType;
 
-    const handleChange = (product, event) => {
+    const handleChange = (product: IProduct, event: ChangeEvent<HTMLInputElement>) => {
         let quantity = event.target.valueAsNumber;
-
-        if (quantity <= 0) {
-            // do sanity check
-        }
 
         if (!cartItems.find(item => item.product.id === product.id)) {
             return;
@@ -22,14 +20,10 @@ function CartDetailsRows() {
         } : item));
     }
 
-    const removeFromCart = (product) => {
-        setCartItems(cartItems.filter(item => item.product.id !== product.id));
-    }
-
 
     if (!cartItems || cartItems.length === 0) {
         return <tr>
-            <td colSpan="5">Your cart is empty</td>
+            <td colSpan={5}>Your cart is empty</td>
         </tr>
     }
 
@@ -54,9 +48,11 @@ function CartDetailsRows() {
                 </tr>
             )}
             <tr>
-                <th colSpan="3" className="text-right">Total:</th>
-                <th colSpan="2">
-                    ${cartItems.reduce((total, item) => { return total + item.quantity * item.product.price}, 0).toFixed(2) }</th>
+                <th colSpan={3} className="text-right">Total:</th>
+                <th colSpan={2}>
+                    ${cartItems.reduce((total, item) => {
+                    return total + item.quantity * item.product.price
+                }, 0).toFixed(2)}</th>
             </tr>
         </>
     );

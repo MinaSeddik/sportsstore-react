@@ -2,7 +2,7 @@ import React from 'react';
 import CartSummary from "./CartSummary";
 import {Link} from "react-router-dom";
 
-function NavigationBar(props) {
+function NavigationBar() {
 
     return (
         <div className="row">

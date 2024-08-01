@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
-import CartContext from "./CartContext";
+import {CartContext} from "../context/CartContext";
+import {CartContextType} from "../@types/sportstore";
 
-function CartSummary(props) {
+function CartSummary() {
 
-    const {cartItems} = useContext(CartContext)
+    const {cartItems} = useContext(CartContext) as CartContextType;
 
     // console.log(`init CartSummary with ${JSON.stringify(cartItems)}`)
 

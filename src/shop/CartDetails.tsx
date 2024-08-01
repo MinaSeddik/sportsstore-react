@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import CartDetailsRows from "./CartDetailsRows";
 import {Link} from "react-router-dom";
-import CartContext from "./CartContext";
+import {CartContext} from "../context/CartContext";
+import {CartContextType} from "../@types/sportstore";
 
 function CartDetails() {
 
-    const {cartItems} = useContext(CartContext)
+    const {cartItems} = useContext(CartContext) as CartContextType;
 
     const getLinkClasses = () => `btn btn-secondary m-1 ${cartItems.length === 0 ? "disabled": ""}`;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-function NotFoundPage(props) {
+function NotFoundPage() {
     return (
         <div className="flex flex-column gap-2">
             <h2>404 Not Found</h2>

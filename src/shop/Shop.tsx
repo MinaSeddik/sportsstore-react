@@ -2,28 +2,29 @@ import React, {useEffect, useState} from 'react';
 import CategoryNavigation from "./CategoryNavigation";
 import ProductList from "./ProductList";
 import {data} from "../data/placeholderData";
+import {IProduct} from "../@types/sportstore";
 
 function Shop() {
 
-    const [products, setProducts] = useState(data.products);
-    const [categories, setCategories] = useState(data.categories);
+    const [products, setProducts] = useState<IProduct[]>(data.products);
+    const [categories, setCategories] = useState<string[]>(data.categories);
 
     useEffect(() => {
 
-        const url = 'http://localhost:3600/api/products';
+        const url: string = 'http://localhost:3600/api/products';
         console.log(`URL = ${url}`)
 
         // let unSubscribed = false;
-        const controller = new AbortController();
-        const signal = controller.signal;
+        const controller: AbortController = new AbortController();
+        const signal: AbortSignal = controller.signal;
 
 
         fetch(url, {signal})
             .then((response) => response.json())
             .then((result) => {
                 setProducts(result);
-                setCategories(result.map(product => product.category)
-                    .filter((value, index, array) => array.indexOf(value) === index));
+                setCategories(result.map((product: IProduct) => product.category)
+                    .filter((value: IProduct, index: number, array: IProduct[]) => array.indexOf(value) === index));
             })
             .catch(error => {
                 if (error.name === 'AbortError') {
@@ -35,7 +36,6 @@ function Shop() {
 
         // clean up function, to cancel the previous run of useEffect
         return () => {
-            // unSubscribed = true;
             controller.abort();
         }
     }, []);
