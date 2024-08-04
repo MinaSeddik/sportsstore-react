@@ -3,7 +3,7 @@ import {Link, NavLink} from "react-router-dom";
 
 type CategoryNavigationProp = {
     baseUrl: string;
-    categories: string[];
+    categories?: string[];
 }
 
 function CategoryNavigation({baseUrl, categories} : CategoryNavigationProp) {

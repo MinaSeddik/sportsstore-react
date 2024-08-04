@@ -4,7 +4,7 @@ import {CartContext} from "../context/CartContext";
 import {CartContextType, IProduct} from "../@types/sportstore";
 
 type ProductListProps = {
-    products: IProduct[];
+    products?: IProduct[] | null;
 }
 
 function ProductList({products}: ProductListProps) {

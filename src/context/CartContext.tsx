@@ -1,6 +1,9 @@
-import { createContext, useState} from "react";
-import {CartContextType, ContextProviderProps, ICartItem, IProduct} from "../@types/sportstore";
+import {createContext, ReactNode, useState} from "react";
+import {CartContextType, ICartItem, IProduct} from "../@types/sportstore";
 
+type ContextProviderProps = {
+    children: ReactNode;
+}
 
 export const CartContext = createContext<CartContextType | null>(null);
 

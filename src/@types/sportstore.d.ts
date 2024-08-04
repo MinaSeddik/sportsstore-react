@@ -15,10 +15,6 @@ export interface ICartItem {
     quantity: number;
 }
 
-export type ContextProviderProps = {
-    children: ReactNode;
-}
-
 export type CartContextType = {
     cartItems: ICartItem[];
     // setCartItems: (cartItems: ICartItem[]) => void;
