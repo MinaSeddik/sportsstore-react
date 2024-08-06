@@ -9,6 +9,7 @@ import ShopRootLayout from "./shop/ShopRootLayout";
 import Shop from "./shop/Shop";
 import CartDetails from "./shop/CartDetails";
 import NoMatch from "./shop/NoMatch";
+import ListProducts from "./shop/ListProducts";
 
 
 const router_old = createBrowserRouter([
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
                 <Route path="products" element={<Shop/>}> </Route>
                 <Route path="products/:category" element={<Shop/>}> </Route>
                 <Route path="cart" element={<CartDetails/>}> </Route>
+                <Route path="list" element={<ListProducts/>}> </Route>
 
 
                 <Route path="*" element={<NoMatch/>}> </Route>
@@ -60,9 +62,9 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <RouterProvider router={router}></RouterProvider>
-    </React.StrictMode>
+    // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

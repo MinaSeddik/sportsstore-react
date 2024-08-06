@@ -47,37 +47,37 @@ function UseFetch(url: string) {
     // const [isLoading, setIsLoading] = useState(false);
     // const [error, setError] = useState(null);
 
-    const [state, dispatch] =
-        useReducer(fetchReducer, FETCH_INIT_STATE);
+    const [state, dispatch] = useReducer(fetchReducer, FETCH_INIT_STATE);
 
     useEffect(() => {
-        console.log(`URL: ${url}`)
+        // console.log(`URL: ${url}`)
 
         const controller: AbortController = new AbortController();
         const signal: AbortSignal = controller.signal;
 
 
         dispatch({type: 'FETCH_START'});
+        console.log('fetching data ..')
         fetch(url, {signal})
             .then((response) => {
                 if (!response.ok) {
-                    console.log(`response: ${response} `)
+                    // console.log(`response: ${response} `)
                     throw Error('CanNot fetch data from this resource')
                 }
 
                 return response.json();
             })
             .then((result) => {
-                console.log(`setting data ...`)
+                // console.log(`setting data ...`)
                 // setData(result);
                 // setError(null)
                 dispatch({type: 'FETCH_SUCCESS', payload: result});
             })
             .catch(error => {
-                console.log(`catching error ... `)
+                // console.log(`catching error ... `)
                 if (error.name === 'AbortError') {
-                    console.log(`catching error [AbortError] ... `)
-                    console.error(error);   // should be ignored
+                    // console.log(`catching error [AbortError] ... `)
+                    // console.error(error);   // should be ignored
                 } else {
                     // setError(error)
                     dispatch({type: 'FETCH_FAIL', payload: error});
@@ -93,8 +93,20 @@ function UseFetch(url: string) {
         }
     }, [url]);
 
-    console.log(`data: ${JSON.stringify(state.data)}`)
+    // console.log(`data: ${JSON.stringify(state.data)}`)
     return state;
+}
+
+const startFetchingData = () => {
+   return  {type: 'FETCH_START'}
+}
+
+const reportFetchSuccess = (result: any) => {
+    return {type: 'FETCH_SUCCESS', payload: result}
+}
+
+const reportFetchFailure = (error: string | Error) => {
+    return {type: 'FETCH_FAIL', payload: error}
 }
 
 export default UseFetch;

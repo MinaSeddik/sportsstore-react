@@ -1,14 +1,9 @@
 import React, {useMemo} from 'react';
 import CategoryNavigation from "./CategoryNavigation";
 import ProductList from "./ProductList";
-import {IProduct} from "../@types/sportstore";
+import {IProduct, ProductsData} from "../@types/sportstore";
 import useFetch from "../hooks/useFetch";
 
-type ProductsData = {
-    data?: IProduct[] | null;
-    isLoading: boolean;
-    error?: Error | null | string;
-}
 
 function Shop() {
 
@@ -46,7 +41,10 @@ function Shop() {
     //     }
     // }, []);
 
-    const {data, isLoading, error}: ProductsData = useFetch('http://localhost:3600/api/products');
+    const url: string = `${process.env.REACT_APP_BASE_URL}/products`
+    // console.log(`Shop Component:: URL = ${url}`)
+
+    const {data, isLoading, error}: ProductsData = useFetch(url);
 
     const categories = useMemo(() => {
         return data ? data.map((product: IProduct) => product.category)

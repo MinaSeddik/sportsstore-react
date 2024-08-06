@@ -1,6 +1,7 @@
 // @types.todo.ts
 
 import {ChangeEvent, Dispatch, ReactNode, SetStateAction} from "react";
+import exp from "node:constants";
 
 export interface IProduct {
     id: number;
@@ -23,3 +24,11 @@ export type CartContextType = {
     addToCard: (product: IProduct) => void;
     removeFromCart: (product: IProduct) => void;
 };
+
+export type ProductsData = {
+    data?: IProduct[] | null;
+    isLoading: boolean;
+    error?: Error | null | string;
+};
+
+

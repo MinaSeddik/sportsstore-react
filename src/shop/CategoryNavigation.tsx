@@ -18,6 +18,8 @@ function CategoryNavigation({baseUrl, categories} : CategoryNavigationProp) {
                     {cat}
                 </NavLink>
             )}
+
+            <Link className="btn btn-secondary btn-block" to="/shop/list">list products with filter</Link>
         </>
     );
 }
