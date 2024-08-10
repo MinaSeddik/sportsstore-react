@@ -1,0 +1,1 @@
+export const val3: number = 0

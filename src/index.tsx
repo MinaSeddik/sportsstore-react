@@ -10,6 +10,11 @@ import Shop from "./shop/Shop";
 import CartDetails from "./shop/CartDetails";
 import NoMatch from "./shop/NoMatch";
 import ListProducts from "./shop/ListProducts";
+import ListProducts2 from "./shop/ListProducts2";
+import AsyncListProducts3 from "./shop/AsyncListProducts3";
+import SignInForm from "./shop/SignInForm";
+import SignInForm2 from "./shop/SignInForm2";
+import ReactQueryExample from "./shop/ReactQueryExample";
 
 
 const router_old = createBrowserRouter([
@@ -39,6 +44,11 @@ const router = createBrowserRouter(
                 <Route path="products/:category" element={<Shop/>}> </Route>
                 <Route path="cart" element={<CartDetails/>}> </Route>
                 <Route path="list" element={<ListProducts/>}> </Route>
+                <Route path="list2" element={<ListProducts2/>}> </Route>
+                <Route path="list3" element={<AsyncListProducts3/>}> </Route>
+                <Route path="form-validation" element={<SignInForm/>}> </Route>
+                <Route path="form-validation2" element={<SignInForm2/>}> </Route>
+                <Route path="react-query" element={<ReactQueryExample/>}> </Route>
 
 
                 <Route path="*" element={<NoMatch/>}> </Route>
@@ -62,9 +72,9 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    // <React.StrictMode>
+    <React.StrictMode>
         <RouterProvider router={router}></RouterProvider>
-    // </React.StrictMode>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
